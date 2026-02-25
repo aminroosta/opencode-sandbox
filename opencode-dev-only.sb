@@ -16,6 +16,10 @@
 ; Permit file access in the allowed writable trees.
 (allow file-read* (subpath "/Users/amin/dev"))
 (allow file-write* (subpath "/Users/amin/dev"))
+(allow file-read* (subpath "/private/tmp"))
+(allow file-write* (subpath "/private/tmp"))
+(allow file-read* (subpath "/private/var/folders"))
+(allow file-write* (subpath "/private/var/folders"))
 (allow file-read* (subpath "/Users/amin/.config/opencode"))
 (allow file-write* (subpath "/Users/amin/.config/opencode"))
 (allow file-read* (subpath "/Users/amin/.local/share/opencode"))

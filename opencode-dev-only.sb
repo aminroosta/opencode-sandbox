@@ -12,6 +12,7 @@
 (deny file-write*)
 (deny file-read* (subpath "/Users/amin"))
 
+
 ; Permit file access in the allowed writable trees.
 (allow file-read* (subpath "/Users/amin/dev"))
 (allow file-write* (subpath "/Users/amin/dev"))
@@ -23,6 +24,11 @@
 (allow file-write* (subpath "/Users/amin/.local/state/opencode"))
 (allow file-read* (subpath "/Users/amin/.cache/opencode"))
 (allow file-write* (subpath "/Users/amin/.cache/opencode"))
+(allow file-read* (subpath "/Users/amin/.cache/uv"))
+(allow file-write* (subpath "/Users/amin/.cache/uv"))
+(allow file-read* (subpath "/Users/amin/.local/share/uv"))
+(allow file-write* (subpath "/Users/amin/.local/share/uv"))
+(allow file-read* (subpath "/Users/amin/Library/Application\ Support/Google/Chrome Canary/"))
 
 ; Permit opencode runtime and system read-only dependencies.
 (allow file-read* (subpath "/Users/amin/.opencode"))
@@ -34,3 +40,10 @@
 (allow file-read-metadata (literal "/"))
 (allow file-read-metadata (literal "/Users"))
 (allow file-read-metadata (literal "/Users/amin"))
+(allow file-read-metadata (literal "/Users/amin/.config"))
+(allow file-read-metadata (literal "/Users/amin/.cache"))
+(allow file-read-metadata (literal "/Users/amin/.local"))
+(allow file-read-metadata (literal "/Users/amin/.local/share"))
+(allow file-read-metadata (literal "/Users/amin/.local/share/uv"))
+(allow file-read-metadata (literal "/Users/amin/.config/opencode"))
+(allow file-read-metadata (literal "/Users/amin/.config/opencode/skills"))

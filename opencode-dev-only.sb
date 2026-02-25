@@ -34,6 +34,7 @@
 (allow process-exec (subpath "/Users/amin/.local/share/mise/shims"))
 (allow process-exec (subpath "/Users/amin/.local/share/uv/python"))
 (allow process-exec (subpath "/Users/amin/.cargo/bin"))
+(allow process-exec (subpath "/Users/amin/.config/opencode/skills"))
 
 ; Allow running project-local tools (venvs, node_modules/.bin, scripts).
 (allow process-exec (subpath "/Users/amin/dev"))

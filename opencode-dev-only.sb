@@ -45,55 +45,71 @@
 (deny process-exec (literal "/usr/bin/osascript"))
 
 
-; Permit file access in the allowed writable trees.
+; ~/dev/
 (allow file-read* (subpath "/Users/amin/dev"))
 (allow file-write* (subpath "/Users/amin/dev"))
+
+; temp directories
 (allow file-read* (subpath "/private/tmp"))
 (allow file-write* (subpath "/private/tmp"))
 (allow file-read* (subpath "/private/var/folders"))
 (allow file-write* (subpath "/private/var/folders"))
+(allow file-write* (literal "/dev/null"))
+
+; .config dir
 (allow file-read* (subpath "/Users/amin/.config/opencode"))
 (allow file-write* (subpath "/Users/amin/.config/opencode"))
+(allow file-read* (subpath "/Users/amin/.config/nvim"))
+(allow file-write* (subpath "/Users/amin/.config/nvim"))
+(allow file-read* (subpath "/Users/amin/.config/gh"))
+(allow file-read* (subpath "/Users/amin/.config/git"))
+
+; .local -> share -> {app}
 (allow file-read* (subpath "/Users/amin/.local/share/opencode"))
 (allow file-write* (subpath "/Users/amin/.local/share/opencode"))
 (allow file-read* (subpath "/Users/amin/.local/share/opentui"))
 (allow file-write* (subpath "/Users/amin/.local/share/opentui"))
+(allow file-read* (subpath "/Users/amin/.local/share/uv"))
+(allow file-write* (subpath "/Users/amin/.local/share/uv"))
+(allow file-read* (subpath "/Users/amin/.local/share/mise"))
+
+; .local -> state -> {app}
 (allow file-read* (subpath "/Users/amin/.local/state/opencode"))
 (allow file-write* (subpath "/Users/amin/.local/state/opencode"))
 (allow file-read* (subpath "/Users/amin/.local/state/mise"))
 (allow file-write* (subpath "/Users/amin/.local/state/mise"))
+
+; .cache -> {app}
 (allow file-read* (subpath "/Users/amin/.cache/opencode"))
 (allow file-write* (subpath "/Users/amin/.cache/opencode"))
 (allow file-read* (subpath "/Users/amin/.cache/uv"))
 (allow file-write* (subpath "/Users/amin/.cache/uv"))
-(allow file-read* (subpath "/Users/amin/.local/share/uv"))
-(allow file-write* (subpath "/Users/amin/.local/share/uv"))
-(allow file-read* (subpath "/Users/amin/.local/share/mise"))
+
+; mise
 (allow file-read* (subpath "/opt/homebrew/Cellar/mise"))
 (allow file-read* (subpath "/Users/amin/Library/Caches/mise"))
 (allow file-write* (subpath "/Users/amin/Library/Caches/mise"))
 (allow file-read* (subpath "/Users/amin/Library/Application Support/mise"))
 (allow file-read* (subpath "/Users/amin/.config/mise"))
-(allow file-read* (subpath "/Users/amin/.config/gh"))
-(allow file-read* (subpath "/Users/amin/.config/git"))
+(allow file-read* (literal "/Users/amin/.mise.toml"))
+
+; other
 (allow file-read* (subpath "/Users/amin/.docker"))
 (allow file-read* (literal "/Users/amin/.gitconfig"))
 (allow file-read* (literal "/Users/amin/.tool-versions"))
-(allow file-read* (literal "/Users/amin/.mise.toml"))
 (allow file-read* (literal "/Users/amin/.bash_profile"))
 (allow file-read* (subpath "/Users/amin/Library/Application\ Support/Google/Chrome Canary/"))
-
-; Permit opencode runtime and system read-only dependencies.
 (allow file-read* (subpath "/Users/amin/.opencode"))
 
-; Permit standard null-device writes.
-(allow file-write* (literal "/dev/null"))
 
 ; Allow minimal directory metadata lookup needed for path traversal.
 (allow file-read-metadata (literal "/"))
 (allow file-read-metadata (literal "/Users"))
 (allow file-read-metadata (literal "/Users/amin"))
 (allow file-read-metadata (literal "/Users/amin/.config"))
+(allow file-read-metadata (literal "/Users/amin/.config/nvim"))
+(allow file-read-metadata (literal "/Users/amin/.config/opencode"))
+(allow file-read-metadata (literal "/Users/amin/.config/opencode/skills"))
 (allow file-read-metadata (literal "/Users/amin/.cache"))
 (allow file-read-metadata (literal "/Users/amin/.local"))
 (allow file-read-metadata (literal "/Users/amin/.local/share"))
@@ -105,5 +121,3 @@
 (allow file-read-metadata (literal "/Users/amin/Library/Caches/mise"))
 (allow file-read-metadata (literal "/Users/amin/Library/Application Support"))
 (allow file-read-metadata (literal "/Users/amin/Library/Application Support/mise"))
-(allow file-read-metadata (literal "/Users/amin/.config/opencode"))
-(allow file-read-metadata (literal "/Users/amin/.config/opencode/skills"))

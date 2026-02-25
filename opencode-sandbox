@@ -13,6 +13,7 @@ exec /usr/bin/env -i \
   VISUAL="${VISUAL:-}" \
   TERM="${TERM:-}" \
   TMPDIR="${TMPDIR:-}" \
+  COLORTERM="${COLORTERM:-}" \
   OPENCODE_DISABLE_AUTOCOMPACT=true \
   OPENCODE_DISABLE_PRUNE=true \
   OPENCODE_DISABLE_LSP_DOWNLOAD=true \

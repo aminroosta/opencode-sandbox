@@ -1,0 +1,36 @@
+; Initial sandbox profile for opencode CLI
+; Goal: allow read/write in /Users/amin/dev and /Users/amin/.config/opencode
+
+(version 1)
+(debug deny)
+
+; Keep non-file behavior unchanged for an initial setup.
+(allow default)
+
+; Important: on current macOS sandbox matching behaves as last-match-wins.
+; Put broad denies first, then carve out explicit allows.
+(deny file-write*)
+(deny file-read* (subpath "/Users/amin"))
+
+; Permit file access in the allowed writable trees.
+(allow file-read* (subpath "/Users/amin/dev"))
+(allow file-write* (subpath "/Users/amin/dev"))
+(allow file-read* (subpath "/Users/amin/.config/opencode"))
+(allow file-write* (subpath "/Users/amin/.config/opencode"))
+(allow file-read* (subpath "/Users/amin/.local/share/opencode"))
+(allow file-write* (subpath "/Users/amin/.local/share/opencode"))
+(allow file-read* (subpath "/Users/amin/.local/state/opencode"))
+(allow file-write* (subpath "/Users/amin/.local/state/opencode"))
+(allow file-read* (subpath "/Users/amin/.cache/opencode"))
+(allow file-write* (subpath "/Users/amin/.cache/opencode"))
+
+; Permit opencode runtime and system read-only dependencies.
+(allow file-read* (subpath "/Users/amin/.opencode"))
+
+; Permit standard null-device writes.
+(allow file-write* (literal "/dev/null"))
+
+; Allow minimal directory metadata lookup needed for path traversal.
+(allow file-read-metadata (literal "/"))
+(allow file-read-metadata (literal "/Users"))
+(allow file-read-metadata (literal "/Users/amin"))

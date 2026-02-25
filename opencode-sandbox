@@ -4,4 +4,25 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROFILE="$SCRIPT_DIR/opencode-dev-only.sb"
 
-exec sandbox-exec -f "$PROFILE" opencode "$@"
+OPENCODE_BIN="$(command -v opencode || true)"
+
+exec /usr/bin/env -i \
+  HOME="${HOME:-}" \
+  PATH="${PATH:-}" \
+  EDITOR="${EDITOR:-}" \
+  VISUAL="${VISUAL:-}" \
+  TERM="${TERM:-}" \
+  TMPDIR="${TMPDIR:-}" \
+  OPENCODE_DISABLE_AUTOCOMPACT=true \
+  OPENCODE_DISABLE_PRUNE=true \
+  OPENCODE_DISABLE_LSP_DOWNLOAD=true \
+  OPENCODE_DISABLE_DEFAULT_PLUGINS=true \
+  OPENCODE_DISABLE_MODELS_FETCH=true \
+  OPENCODE_DISABLE_SHARE=true \
+  OPENCODE_DISABLE_CLAUDE_CODE_PROMPT=true \
+  OPENCODE_DISABLE_CLAUDE_CODE_SKILLS=true \
+  OPENCODE_DISABLE_EXTERNAL_SKILLS=true \
+  OPENCODE_EXPERIMENTAL_DISABLE_FILEWATCHER=true \
+  OPENCODE_DISABLE_TERMINAL_TITLE=true \
+  OPENCODE_DISABLE_FILETIME_CHECK=true \
+  /usr/bin/sandbox-exec -f "$PROFILE" "$OPENCODE_BIN" "$@"

@@ -36,17 +36,12 @@
 (allow process-exec (subpath "/Users/amin/.cargo/bin"))
 (allow process-exec (subpath "/Users/amin/.config/opencode/skills"))
 
-; Allow clipboard copy on macOS.
-(allow process-exec (literal "/usr/bin/osascript"))
-
 ; Allow running project-local tools (venvs, node_modules/.bin, scripts).
 (allow process-exec (subpath "/Users/amin/dev"))
 
 ; Re-block high-risk launcher helpers.
 (deny process-exec (literal "/bin/launchctl"))
 (deny process-exec (literal "/usr/bin/open"))
-(deny process-exec (literal "/usr/bin/osascript"))
-
 
 ; ~/dev/
 (allow file-read* (subpath "/Users/amin/dev"))
